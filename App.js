@@ -13,7 +13,6 @@ export default class App extends React.Component {
       };
 
       this.loadWallpapers = this.loadWallpapers.bind(this)
-      this.renderItem = this.renderItem.bind(this);
     }
 
     loadWallpapers(){
@@ -34,12 +33,12 @@ export default class App extends React.Component {
       this.loadWallpapers()
     }
 
-    renderItem(image){
+    renderItem=({item}) => {
       return(
         <View style={{ height,width }}>
           <Image
             style={{ flex: 1, height: null, width: null }}
-            source={{ uri: image.urls.regular }}
+            source={{ uri: item.urls.regular }}
             resizeMode="cover"
           />
         </View>
@@ -62,7 +61,7 @@ export default class App extends React.Component {
             horizontal
             pagingEnabled
             data={this.state.images}
-            renderItem={(({item})=>this.renderItem(item))}
+            renderItem={this.renderItem}
             keyExtractor={item => item.id}
           />
         </View>
